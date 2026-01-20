@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <div>
-      <p className="">Hello World</p>
+      <p className="bg-amber-700">Hello World</p>
     </div>
   );
 }
