@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function LoginPage() {
   return (
-    <div className="bg-beige-100 grid min-h-svh lg:grid-cols-[40%_60%] lg:p-4">
+    <div className="bg-beige-100 grid min-h-svh lg:grid-cols-[40%_60%]">
       <div className="hidden h-full w-full rounded-xl bg-[url('/illustration-image.svg')] bg-cover bg-center bg-no-repeat lg:block">
         <div className="flex h-full flex-col justify-between">
           <Image

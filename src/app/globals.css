@@ -5,6 +5,13 @@
   --foreground: #171717;
   --beige-100: #f8f4f0;
   --beige-500: #98908b;
+  --gray-200: #b3b3b3;
+  --gray-300: #696868;
+  --grey-900: #201f24;
+  --green-400: #277c78;
+  --cyan: #82c9d7;
+  --navy: #626070;
+  --yellow: #f2cdac;
 }
 
 @theme inline {
@@ -12,6 +19,13 @@
   --color-foreground: var(--foreground);
   --color-beige-100: var(--beige-100);
   --color-beige-500: var(--beige-500);
+  --color-green-400: var(--green-400);
+  --color-gray-200: var(--gray-200);
+  --color-gray-300: var(--gray-300);
+  --color-gray-900: var(--grey-900);
+  --color-cyan: var(--cyan);
+  --color-navy: var(--navy);
+  --color-yellow: var(--yellow);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
