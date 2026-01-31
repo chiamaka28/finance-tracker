@@ -1,6 +1,13 @@
 'use client';
 import Image from 'next/image';
-import { HomeIcon } from '@/lib/icons';
+import { usePathname } from 'next/navigation';
+import {
+  HomeIcon,
+  TransactionIcon,
+  BudgetIcon,
+  PotsNavIcon,
+  BillsIcon,
+} from '@/lib/icons';
 
 import {
   Sidebar,
@@ -20,27 +27,27 @@ const items = [
   {
     title: 'Dashboard',
     url: '/dashboard',
-    icon: <HomeIcon />,
+    icon: HomeIcon,
   },
   {
     title: 'Transactions',
     url: '/dashboard/transactions',
-    icon: <HomeIcon />,
+    icon: TransactionIcon,
   },
   {
     title: 'Budgets',
     url: '/dashboard/budgets',
-    icon: <HomeIcon />,
+    icon: BudgetIcon,
   },
   {
     title: 'Pots',
     url: '/dashboard/pots',
-    icon: <HomeIcon />,
+    icon: PotsNavIcon,
   },
   {
     title: 'Recurring Bills',
     url: '/dashboard/bills',
-    icon: <HomeIcon />,
+    icon: BillsIcon,
   },
 ];
 
@@ -49,7 +56,7 @@ export function AppSidebar() {
   return (
     <Sidebar
       collapsible="icon"
-      className="rounded-r-2xl bg-black pt-8 text-white"
+      className="rounded-r-2xl bg-black pt-8 text-gray-200"
     >
       <SidebarContent>
         <SidebarHeader>
@@ -59,6 +66,7 @@ export function AppSidebar() {
               alt="Finance Tracker Logo"
               width={120}
               height={120}
+              loading="eager"
             />
           ) : (
             <Image
@@ -66,23 +74,46 @@ export function AppSidebar() {
               alt="Finance Tracker Logo"
               width={15}
               height={25}
+              loading="eager"
             />
           )}
         </SidebarHeader>
 
-        <SidebarGroup>
+        <SidebarGroup className="p-0 pr-2.5">
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title} className="">
-                  <SidebarMenuButton variant="default" size="lg" asChild>
-                    <a href={item.url}>
-                      <span>{item.icon}</span>
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {items.map((item) => {
+                const Icon = item.icon;
+                const pathname = usePathname();
+                const isActive = pathname === item.url;
+                return (
+                  <SidebarMenuItem
+                    key={item.title}
+                    className={isActive ? 'bg-beige-100 rounded-r-xl' : ''}
+                  >
+                    <SidebarMenuButton
+                      variant="default"
+                      size="lg"
+                      className={`[&_svg:not([class*='size-'])]:size-6`}
+                      asChild
+                    >
+                      <a href={item.url}>
+                        <Icon
+                          className={
+                            isActive ? 'text-green-400' : 'text-gray-200'
+                          }
+                          fill="currentColor"
+                        />
+                        <span
+                          className={`${isActive ? 'text-gray-900' : 'text-gray-200'} text-[15px] font-bold`}
+                        >
+                          {item.title}
+                        </span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
