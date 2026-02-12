@@ -10,11 +10,14 @@
   --gray-100: #f2f2f2;
   --gray-200: #b3b3b3;
   --gray-300: #696868;
+  --gray-500: #626070;
   --grey-900: #201f24;
   --green-400: #277c78;
   --cyan: #82c9d7;
   --navy: #626070;
   --yellow: #f2cdac;
+  --purple: #826cb0;
+  --red: #c94736;
 }
 
 @theme inline {
@@ -26,10 +29,13 @@
   --color-gray-100: var(--gray-100);
   --color-gray-200: var(--gray-200);
   --color-gray-300: var(--gray-300);
+
   --color-gray-900: var(--grey-900);
   --color-cyan: var(--cyan);
   --color-navy: var(--navy);
+  --color-purple: var(--purple);
   --color-yellow: var(--yellow);
+  --color-red: var(--red);
   --font-sans: var(--font-public-sans);
 }
 
