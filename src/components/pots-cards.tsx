@@ -29,7 +29,7 @@ export default function Pots() {
             <div className="flex items-center gap-2">
               <div className="h-10 w-1 shrink-0 rounded-md bg-green-400" />
               <div>
-                <p className="text-sm text-gray-300">Savings</p>
+                <p className="truncate text-sm text-gray-300">Savings</p>
                 <p className="text-[17px] font-bold text-gray-900">$159</p>
               </div>
             </div>
@@ -37,7 +37,7 @@ export default function Pots() {
             <div className="flex items-center gap-2">
               <div className="bg-cyan h-10 w-1 shrink-0 rounded-md" />
               <div>
-                <p className="text-sm text-gray-300">Gift</p>
+                <p className="truncate text-sm text-gray-300">Gift</p>
                 <p className="text-[17px] font-bold text-gray-900">$40</p>
               </div>
             </div>
@@ -45,7 +45,7 @@ export default function Pots() {
             <div className="flex items-center gap-2">
               <div className="bg-navy h-10 w-1 shrink-0 rounded-md" />
               <div>
-                <p className="text-sm text-gray-300">Concert Ticket</p>
+                <p className="truncate text-sm text-gray-300">Concert Ticket</p>
                 <p className="text-[17px] font-bold text-gray-900">$110</p>
               </div>
             </div>
@@ -53,7 +53,7 @@ export default function Pots() {
             <div className="flex items-center gap-2">
               <div className="bg-yellow h-10 w-1 shrink-0 rounded-md" />
               <div>
-                <p className="text-sm text-gray-300">New Laptop</p>
+                <p className="truncate text-sm text-gray-300">New Laptop</p>
                 <p className="text-[17px] font-bold text-gray-900">$10</p>
               </div>
             </div>

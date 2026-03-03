@@ -1,3 +1,4 @@
+'use client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Table,
@@ -8,28 +9,28 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { useIsMobile } from '@/hooks/use-mobile';
 import { Input } from '@/components/ui/input';
-import { SearchIcon, SortIcon, FilterIcon } from '@/lib/icons';
+import { SearchIcon, SortIcon, ChevronDownIcon } from '@/lib/icons';
 import { Button } from '@/components/ui/button';
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown';
 import { BillIcon } from '@/lib/icons';
-import { ChevronDownIcon } from 'lucide-react';
 
 export default function BillsPage() {
+  const isMobile = useIsMobile();
   return (
-    <div className="bg-beige-100 min-h-screen p-7 md:px-10">
+    <div className="bg-beige-100 @container min-h-screen p-7 md:px-10">
       <h1 className="mb-4 text-2xl font-bold">Recurring Bills</h1>
-      <div className="@container md:grid md:grid-cols-[30%_1fr] lg:grid-cols-[250px_1fr]">
-        <div className="mt-7 sm:flex sm:items-start sm:gap-6 md:flex-col">
-          <Card className="flex h-29 justify-center bg-gray-900 text-white ring-0">
-            <CardContent className="flex items-center gap-3">
+      <div className="grid grid-cols-1 gap-6 @2xl:grid-cols-[30%_1fr]">
+        <div className="mt-7 sm:mb-6 sm:grid sm:grid-cols-2 md:mt-0 md:mb-0 md:grid-cols-1">
+          <Card className="flex h-29 justify-center bg-gray-900 text-white ring-0 sm:h-51">
+            <CardContent className="flex items-center gap-3 sm:flex-col sm:items-start sm:gap-6">
               <div>
                 <BillIcon />
               </div>
@@ -39,7 +40,7 @@ export default function BillsPage() {
               </div>
             </CardContent>
           </Card>
-          <Card className="my-6 bg-white ring-0">
+          <Card className="my-6 bg-white ring-0 sm:my-0 sm:h-51">
             <CardHeader>
               <CardTitle>Summary</CardTitle>
             </CardHeader>
@@ -65,73 +66,45 @@ export default function BillsPage() {
               <Input
                 type="text"
                 placeholder="Search Bills"
-                className="w-full px-4"
+                className="w-full border-gray-300 px-4"
               />
               <Button className="absolute top-1/2 right-3 -translate-y-1/2 transition-colors">
                 <SearchIcon className="h-4 w-4 text-gray-400" />
               </Button>
             </div>
             <div>
-              <Select>
-                <SelectTrigger className="relative">
-                  <SortIcon className="h-5 w-5 md:hidden" />
-                  <ChevronDownIcon className="text-muted-foreground pointer-events-none hidden size-4" />
-                  <SelectValue className="[&>span]:hidden md:[&>span]:inline" />
-                </SelectTrigger>
-                <SelectContent className="w-28.5 bg-white sm:w-auto">
-                  <SelectGroup>
-                    <SelectItem value="light">Light</SelectItem>
-                    <SelectItem value="dark">Dark</SelectItem>
-                    <SelectItem value="system">System</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-              {/* <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="outline"
-                    size="icon-lg"
-                    className="border-none shadow-none"
-                  >
-                    <SortIcon className="h-5 w-5" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-white">
-                  <DropdownMenuGroup>
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                    <DropdownMenuItem>Profile</DropdownMenuItem>
-                    <DropdownMenuItem>Billing</DropdownMenuItem>
-                  </DropdownMenuGroup>
-                  <DropdownMenuGroup>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>Team</DropdownMenuItem>
-                    <DropdownMenuItem>Subscription</DropdownMenuItem>
-                  </DropdownMenuGroup>
-                </DropdownMenuContent>
-              </DropdownMenu>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="outline"
-                    size="icon-lg"
-                    className="border-none shadow-none"
-                  >
-                    <FilterIcon className="h-5 w-5" />
-                  </Button>
+                  {isMobile ? (
+                    <Button
+                      variant="outline"
+                      size="icon-lg"
+                      className="border-none bg-transparent shadow-none"
+                    >
+                      <SortIcon className="h-5 w-5" />
+                    </Button>
+                  ) : (
+                    <div>
+                      <label className="mr-2 text-sm text-gray-300">
+                        Sort By
+                      </label>
+                      <Button
+                        variant="outline"
+                        className="border-gray-300 bg-transparent text-gray-300 shadow-none"
+                      >
+                        Latest <ChevronDownIcon className="ml-1 h-4 w-4" />
+                      </Button>
+                    </div>
+                  )}
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="bg-white">
-                  <DropdownMenuGroup>
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                    <DropdownMenuItem>Profile</DropdownMenuItem>
-                    <DropdownMenuItem>Billing</DropdownMenuItem>
-                  </DropdownMenuGroup>
-                  <DropdownMenuGroup>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>Team</DropdownMenuItem>
-                    <DropdownMenuItem>Subscription</DropdownMenuItem>
-                  </DropdownMenuGroup>
+                  <DropdownMenuLabel>Oldest</DropdownMenuLabel>
+                  <DropdownMenuItem>A to Z</DropdownMenuItem>
+                  <DropdownMenuItem>Z to A</DropdownMenuItem>
+                  <DropdownMenuItem>Highest</DropdownMenuItem>
+                  <DropdownMenuItem>Lowest</DropdownMenuItem>
                 </DropdownMenuContent>
-              </DropdownMenu> */}
+              </DropdownMenu>
             </div>
           </div>
           <Table className="overflow-hidden">

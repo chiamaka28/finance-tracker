@@ -21,12 +21,12 @@ export default function BudgetsPage() {
     'bg-yellow': '[&>div]:bg-yellow',
   };
   return (
-    <div className="bg-beige-100 min-h-screen p-7 md:px-10">
+    <div className="bg-beige-100 @container min-h-screen p-7 md:px-10">
       <div className="flex items-center justify-between">
         <h1 className="mb-4 text-2xl font-bold">Budgets</h1>
         <Button className="bg-gray-900 text-white">+ Add New Budget</Button>
       </div>
-      <div className="mt-6 md:grid md:grid-cols-2 md:gap-5">
+      <div className="mt-6 grid grid-cols-1 gap-5 @xl:grid-cols-2">
         <div>
           <Card className="mb-6 bg-white ring-0">
             <CardContent>
