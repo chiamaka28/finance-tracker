@@ -4,6 +4,13 @@ import { Progress } from '@/components/ui/progress';
 import { Ellipsis } from '@/lib/icons';
 
 export default function PotsPage() {
+  const colorMap: Record<string, string> = {
+    'bg-green-400': '[&>div]:bg-green-400',
+    'bg-gray-500': '[&>div]:bg-gray-500',
+    'bg-cyan': '[&>div]:bg-cyan',
+    'bg-yellow': '[&>div]:bg-yellow',
+    'bg-purple': '[&>div]:bg-purple',
+  };
   return (
     <div className="bg-beige-100 min-h-screen p-7 md:px-10">
       <div className="flex items-center justify-between">
@@ -28,11 +35,8 @@ export default function PotsPage() {
                 <p className="text-3xl font-bold text-gray-900">{pot.amount}</p>
               </div>
               <Progress
-                className={`bg-beige-100 h-2 w-full rounded-xl`}
+                className={`bg-beige-100 ${colorMap[pot.color]} h-2 w-full rounded-xl`}
                 value={pot.progress}
-                style={{
-                  ['--indicator-bg' as string]: pot.color,
-                }}
               />
               <div className="mt-1.5 flex items-center justify-between text-gray-300">
                 <p className="text-[13px] font-bold">{pot.progress}%</p>

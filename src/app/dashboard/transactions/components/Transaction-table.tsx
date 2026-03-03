@@ -1,3 +1,4 @@
+'use client';
 import {
   Table,
   TableBody,
@@ -8,16 +9,9 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Input } from '@/components/ui/input';
-import { SearchIcon, SortIcon, FilterIcon } from '@/lib/icons';
+import { SearchIcon, SortIcon, FilterIcon, ChevronDownIcon } from '@/lib/icons';
 import { Button } from '@/components/ui/button';
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+import { useIsMobile } from '@/hooks/use-mobile';
 import {
   Pagination,
   PaginationContent,
@@ -27,7 +21,15 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
-import { ChevronDownIcon } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown';
 
 const items = [
   {
@@ -113,82 +115,88 @@ const items = [
 ];
 
 export default function TransactionTable() {
+  const isMobile = useIsMobile();
+  if (isMobile === undefined) return null;
   return (
     <div className="rounded-lg bg-white p-6">
-      <div className="mb-4 flex justify-between gap-6">
-        <div className="relative flex-1">
+      <div className="mb-4 flex items-center justify-between gap-6">
+        <div className="relative">
           <Input
             type="text"
             placeholder="Search transactions"
-            className="w-full pl-10"
+            className="w-full pl-10 md:max-w-[450px]"
           />
           <Button className="absolute top-1/2 right-3 -translate-y-1/2 transition-colors">
             <SearchIcon className="h-4 w-4 text-gray-400" />
           </Button>
         </div>
-        <div>
-          <Select>
-            <SelectTrigger className="relative">
-              <SortIcon className="h-5 w-5 md:hidden" />
-              <ChevronDownIcon className="text-muted-foreground pointer-events-none hidden size-4" />
 
-              <SelectValue className="[&>span]:hidden md:[&>span]:inline" />
-            </SelectTrigger>
-            <SelectContent className="w-28.5 bg-white sm:w-auto">
-              <SelectGroup>
-                <SelectItem value="light">Light</SelectItem>
-                <SelectItem value="dark">Dark</SelectItem>
-                <SelectItem value="system">System</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-          {/* <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            {isMobile ? (
               <Button
                 variant="outline"
                 size="icon-lg"
-                className="border-none shadow-none"
+                className="border-none bg-transparent shadow-none"
               >
                 <SortIcon className="h-5 w-5" />
               </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-white">
-              <DropdownMenuGroup>
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Billing</DropdownMenuItem>
-              </DropdownMenuGroup>
-              <DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Team</DropdownMenuItem>
-                <DropdownMenuItem>Subscription</DropdownMenuItem>
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+            ) : (
+              <div>
+                <label className="">Sort By</label>
+                <Button
+                  variant="outline"
+                  className="border-gray-900 bg-transparent shadow-none"
+                >
+                  Latest <ChevronDownIcon className="ml-1 h-4 w-4" />
+                </Button>
+              </div>
+            )}
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="bg-white">
+            <DropdownMenuLabel>Oldest</DropdownMenuLabel>
+            <DropdownMenuItem>A to Z</DropdownMenuItem>
+            <DropdownMenuItem>Z to A</DropdownMenuItem>
+            <DropdownMenuItem>Highest</DropdownMenuItem>
+            <DropdownMenuItem>Lowest</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            {isMobile ? (
               <Button
                 variant="outline"
                 size="icon-lg"
-                className="border-none shadow-none"
+                className="border-none bg-transparent shadow-none"
               >
                 <FilterIcon className="h-5 w-5" />
               </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-white">
-              <DropdownMenuGroup>
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Billing</DropdownMenuItem>
-              </DropdownMenuGroup>
-              <DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Team</DropdownMenuItem>
-                <DropdownMenuItem>Subscription</DropdownMenuItem>
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu> */}
-        </div>
+            ) : (
+              <div>
+                <label className="">Category</label>
+                <Button
+                  variant="outline"
+                  className="border-gray-900 bg-transparent shadow-none"
+                >
+                  All Transaction <ChevronDownIcon className="ml-1 h-4 w-4" />
+                </Button>
+              </div>
+            )}
+          </DropdownMenuTrigger>
+
+          <DropdownMenuContent className="bg-white">
+            <DropdownMenuLabel>Entertainment</DropdownMenuLabel>
+            <DropdownMenuItem>Bills</DropdownMenuItem>
+            <DropdownMenuItem>Groceries</DropdownMenuItem>
+            <DropdownMenuItem>Dining Out</DropdownMenuItem>
+            <DropdownMenuItem>Transportation</DropdownMenuItem>
+            <DropdownMenuItem>Personal Care</DropdownMenuItem>
+            <DropdownMenuItem>Education</DropdownMenuItem>
+            <DropdownMenuItem>Lifestyle</DropdownMenuItem>
+            <DropdownMenuItem>Shopping</DropdownMenuItem>
+            <DropdownMenuItem>General</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
       <Table className="overflow-hidden">
         <TableHeader className="hidden md:table-header-group">

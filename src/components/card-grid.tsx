@@ -7,7 +7,7 @@ export default function CardGrid() {
         {data.map((item) => (
           <Card
             key={item.title}
-            className={`${item.bg} h-30 rounded-xl border-none p-4 shadow-none`}
+            className={`${item.bg} h-30 rounded-xl border-none p-4 shadow-none ring-0`}
           >
             <CardHeader>
               <CardTitle className={`${item.color} text-base font-semibold`}>

@@ -5,7 +5,7 @@ import { CheveronRight } from '@/lib/icons';
 export default function TransactionCard() {
   return (
     <div className="md:col-span-3">
-      <Card className="mb-5 bg-white ring-0 sm:py-6 md:py-4">
+      <Card className="mb-5 bg-white ring-0 sm:py-6 md:h-128.25 md:py-4">
         <CardHeader className="flex items-center justify-between">
           <h3 className="text-lg font-bold text-gray-900">Transactions</h3>
           <Link

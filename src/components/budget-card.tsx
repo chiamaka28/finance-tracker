@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { Card, CardContent, CardHeader } from './ui/card';
 import { CheveronRight } from '@/lib/icons';
+import BudgetChart from '@/app/dashboard/components/budget-chart';
+
 export default function BudgetCard() {
   return (
     <div className="col-span-2">
@@ -16,6 +18,7 @@ export default function BudgetCard() {
           </Link>
         </CardHeader>
         <CardContent>
+          <BudgetChart />
           <div className="grid grid-cols-2 gap-y-2">
             <div className="flex items-center gap-2">
               <div className="h-10 w-1 rounded-md bg-green-400"></div>

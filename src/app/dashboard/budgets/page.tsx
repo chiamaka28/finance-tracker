@@ -1,137 +1,177 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import BudgetChart from '@/app/dashboard/components/budget-chart';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown';
 import { Progress } from '@/components/ui/progress';
 import { CheveronRight } from '@/lib/icons';
 import { Ellipsis } from 'lucide-react';
 
 export default function BudgetsPage() {
+  const colorMap: Record<string, string> = {
+    'bg-green-400': '[&>div]:bg-green-400',
+    'bg-cyan': '[&>div]:bg-cyan',
+    'bg-yellow': '[&>div]:bg-yellow',
+  };
   return (
     <div className="bg-beige-100 min-h-screen p-7 md:px-10">
       <div className="flex items-center justify-between">
         <h1 className="mb-4 text-2xl font-bold">Budgets</h1>
         <Button className="bg-gray-900 text-white">+ Add New Budget</Button>
       </div>
-      <div className="mt-6">
-        <Card className="mb-6 bg-white ring-0">
-          <CardContent>
-            <h3>Spending Summary</h3>
-            <div>
-              <div className="flex items-center justify-between border-b border-gray-100 pt-3 pb-3">
-                <div className="flex items-center gap-3">
-                  <div className="bg-cyan h-7 w-1 rounded-md"></div>
-                  <p className="text-base text-gray-300">Bills</p>
-                </div>
-                <p className="text-xl font-bold text-gray-900">
-                  $250.00
-                  <span className="text-sm font-normal text-gray-300">
-                    of $750.00
-                  </span>
-                </p>
-              </div>
-              <div className="flex items-center justify-between border-b border-gray-100 pt-3 pb-3">
-                <div className="flex items-center gap-3">
-                  <div className="bg-yellow h-7 w-1 rounded-md"></div>
-                  <p className="text-base text-gray-300">Dining Out</p>
-                </div>
-                <p className="text-xl font-bold text-gray-900">
-                  $67.00{' '}
-                  <span className="text-sm font-normal text-gray-300">
-                    of $75.00
-                  </span>
-                </p>
-              </div>
-              <div className="flex items-center justify-between border-b border-gray-100 pt-3 pb-3">
-                <div className="flex items-center gap-3">
-                  <div className="bg-navy h-7 w-1 rounded-md"></div>
-                  <p className="text-base text-gray-300">Personal Care</p>
-                </div>
-                <p className="text-xl font-bold text-gray-900">
-                  $67.00{' '}
-                  <span className="text-sm font-normal text-gray-300">
-                    of $100.00
-                  </span>
-                </p>
-              </div>
-              <div className="flex items-center justify-between pt-3 pb-3">
-                <div className="flex items-center gap-3">
-                  <div className="h-7 w-1 rounded-md bg-green-400"></div>
-                  <p className="text-base text-gray-300">Entertainment</p>
-                </div>
-                <p className="text-xl font-bold text-gray-900">
-                  $25.00{' '}
-                  <span className="text-sm font-normal text-gray-300">
-                    of $50.00
-                  </span>
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-        {data.map((item) => (
-          <Card key={item.id} className="mb-4 bg-white ring-0">
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <div className="flex items-center gap-3">
-                  <div className={`h-3 w-3 rounded-full ${item.color}`}></div>
-                  {item.name}
-                </div>
-                <Button variant="ghost" className="ml-auto">
-                  <Ellipsis className="h-5 w-5" />
-                </Button>
-              </CardTitle>
-            </CardHeader>
+      <div className="mt-6 md:grid md:grid-cols-2 md:gap-5">
+        <div>
+          <Card className="mb-6 bg-white ring-0">
             <CardContent>
+              <BudgetChart />
+              <h3>Spending Summary</h3>
               <div>
-                <p>Maximum of {item.max}</p>
-              </div>
-              <Progress
-                className={`bg-beige-100 my-2 h-8 w-full rounded-lg`}
-                value={item.spent}
-              />
-              <div className="mt-4 grid grid-cols-2">
-                <div className="flex items-center gap-3">
-                  <div className="h-10.75 w-1 rounded-md bg-green-400"></div>
-                  <div>
-                    <p>Spent</p>
-                    <p className="text-base text-gray-300">${item.spent}</p>
+                <div className="flex items-center justify-between border-b border-gray-100 pt-3 pb-3">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-cyan h-7 w-1 rounded-md"></div>
+                    <p className="text-base text-gray-300">Bills</p>
                   </div>
+                  <p className="text-xl font-bold text-gray-900">
+                    $250.00
+                    <span className="text-sm font-normal text-gray-300">
+                      of $750.00
+                    </span>
+                  </p>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="bg-beige-100 h-10.75 w-1 rounded-md"></div>
-                  <div>
-                    <p>Free</p>
-                    <p className="text-base text-gray-300">${item.spent}</p>
+                <div className="flex items-center justify-between border-b border-gray-100 pt-3 pb-3">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-yellow h-7 w-1 rounded-md"></div>
+                    <p className="text-base text-gray-300">Dining Out</p>
                   </div>
+                  <p className="text-xl font-bold text-gray-900">
+                    $67.00{' '}
+                    <span className="text-sm font-normal text-gray-300">
+                      of $75.00
+                    </span>
+                  </p>
                 </div>
-              </div>
-              <div className="bg-beige-100 mt-4">
-                <div className="flex items-center justify-between">
-                  <p>Latest Spending</p>
-                  <Button
-                    variant="outline"
-                    className="bg-beige-100 mt-2 border-0 shadow-none"
-                  >
-                    See All <CheveronRight className="h-2 w-2" />
-                  </Button>
-                </div>
-                {item.spendings.map((spending, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-between border-gray-300 py-2 not-last:border-b"
-                  >
-                    <div>
-                      <p className="text-sm font-medium">{spending.name}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm font-bold">{spending.amount}</p>
-                      <p className="text-xs text-gray-300">{spending.date}</p>
-                    </div>
+                <div className="flex items-center justify-between border-b border-gray-100 pt-3 pb-3">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-navy h-7 w-1 rounded-md"></div>
+                    <p className="text-base text-gray-300">Personal Care</p>
                   </div>
-                ))}
+                  <p className="text-xl font-bold text-gray-900">
+                    $67.00{' '}
+                    <span className="text-sm font-normal text-gray-300">
+                      of $100.00
+                    </span>
+                  </p>
+                </div>
+                <div className="flex items-center justify-between pt-3 pb-3">
+                  <div className="flex items-center gap-3">
+                    <div className="h-7 w-1 rounded-md bg-green-400"></div>
+                    <p className="text-base text-gray-300">Entertainment</p>
+                  </div>
+                  <p className="text-xl font-bold text-gray-900">
+                    $25.00{' '}
+                    <span className="text-sm font-normal text-gray-300">
+                      of $50.00
+                    </span>
+                  </p>
+                </div>
               </div>
             </CardContent>
           </Card>
-        ))}
+        </div>
+        <div>
+          {data.map((item) => (
+            <Card key={item.id} className="mb-4 bg-white ring-0">
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <div className="flex items-center gap-3">
+                    <div className={`h-3 w-3 rounded-full ${item.color}`}></div>
+                    {item.name}
+                  </div>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" className="ml-auto">
+                        <Ellipsis className="h-5 w-5" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuGroup>
+                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                        <DropdownMenuItem>Profile</DropdownMenuItem>
+                        <DropdownMenuItem>Billing</DropdownMenuItem>
+                      </DropdownMenuGroup>
+                      <DropdownMenuGroup>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem>Team</DropdownMenuItem>
+                        <DropdownMenuItem>Subscription</DropdownMenuItem>
+                      </DropdownMenuGroup>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div>
+                  <p>Maximum of {item.max}</p>
+                </div>
+                <Progress
+                  className={`bg-beige-100 ${colorMap[item.color]} my-2 h-8 w-full rounded-lg`}
+                  value={
+                    (item.spent / parseFloat(item.max.replace('$', ''))) * 100
+                  }
+                />
+                <div className="mt-4 grid grid-cols-2">
+                  <div className="flex items-center gap-3">
+                    <div
+                      className={`h-10.75 w-1 rounded-md ${item.color}`}
+                    ></div>
+                    <div>
+                      <p>Spent</p>
+                      <p className="text-base text-gray-300">${item.spent}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="bg-beige-100 h-10.75 w-1 rounded-md"></div>
+                    <div>
+                      <p>Free</p>
+                      <p className="text-base text-gray-300">${item.spent}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-beige-100 mt-4 rounded-lg p-4">
+                  <div className="flex items-center justify-between">
+                    <p>Latest Spending</p>
+                    <Button
+                      variant="outline"
+                      className="bg-beige-100 mt-2 border-0 shadow-none"
+                    >
+                      See All <CheveronRight className="h-2 w-2" />
+                    </Button>
+                  </div>
+                  {item.spendings.map((spending, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center justify-between border-gray-300 py-2 not-last:border-b"
+                    >
+                      <div>
+                        <p className="text-sm font-medium">{spending.name}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold">{spending.amount}</p>
+                        <p className="text-xs text-gray-300">{spending.date}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
     </div>
   );
