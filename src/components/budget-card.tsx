@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Card, CardContent, CardHeader } from './ui/card';
 import { CheveronRight } from '@/lib/icons';
-import BudgetChart from '@/app/dashboard/components/budget-chart';
+import BudgetChart from '@/app/dashboard/budgets/components/budget-chart';
 
 export default function BudgetCard() {
   return (

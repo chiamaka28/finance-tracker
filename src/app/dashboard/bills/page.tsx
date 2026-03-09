@@ -28,7 +28,7 @@ export default function BillsPage() {
     <div className="bg-beige-100 @container min-h-screen p-7 md:px-10">
       <h1 className="mb-4 text-2xl font-bold">Recurring Bills</h1>
       <div className="grid grid-cols-1 gap-6 @2xl:grid-cols-[30%_1fr]">
-        <div className="mt-7 sm:mb-6 sm:grid sm:grid-cols-2 md:mt-0 md:mb-0 md:grid-cols-1">
+        <div className="mt-7 gap-6 sm:mb-6 sm:grid sm:grid-cols-2 md:mt-0 md:mb-0 md:grid-cols-1">
           <Card className="flex h-29 justify-center bg-gray-900 text-white ring-0 sm:h-51">
             <CardContent className="flex items-center gap-3 sm:flex-col sm:items-start sm:gap-6">
               <div>

@@ -22,6 +22,7 @@ import {
   SidebarFooter,
   useSidebar,
 } from '@/components/ui/sidebar';
+import Link from 'next/link';
 
 const items = [
   {
@@ -59,25 +60,27 @@ export function AppSidebar() {
       className="rounded-r-2xl bg-black pt-8 text-gray-200"
     >
       <SidebarContent>
-        <SidebarHeader>
-          {state === 'expanded' ? (
-            <Image
-              src="/Logo.svg"
-              alt="Finance Tracker Logo"
-              width={120}
-              height={120}
-              loading="eager"
-            />
-          ) : (
-            <Image
-              src="/f-logo.svg"
-              alt="Finance Tracker Logo"
-              width={15}
-              height={25}
-              loading="eager"
-            />
-          )}
-        </SidebarHeader>
+        <Link href="/dashboard">
+          <SidebarHeader>
+            {state === 'expanded' ? (
+              <Image
+                src="/Logo.svg"
+                alt="Finance Tracker Logo"
+                width={120}
+                height={120}
+                loading="eager"
+              />
+            ) : (
+              <Image
+                src="/f-logo.svg"
+                alt="Finance Tracker Logo"
+                width={15}
+                height={25}
+                loading="eager"
+              />
+            )}
+          </SidebarHeader>
+        </Link>
 
         <SidebarGroup className="p-0 pr-2.5">
           <SidebarGroupContent>

@@ -1,20 +1,23 @@
+'use client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import BudgetChart from '@/app/dashboard/components/budget-chart';
+import BudgetChart from '@/app/dashboard/budgets/components/budget-chart';
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown';
 import { Progress } from '@/components/ui/progress';
 import { CheveronRight } from '@/lib/icons';
 import { Ellipsis } from 'lucide-react';
+import { useDialogStore } from '@/stores/dialog-store';
+import { CreateBudgetDialog } from './components/create-budget-dialog';
+import { EditBudgetDialog } from './components/edit-budget-dialog';
 
 export default function BudgetsPage() {
+  const { OpenCreateBudgetDialog } = useDialogStore();
+  const { OpenEditBudgetDialog } = useDialogStore();
   const colorMap: Record<string, string> = {
     'bg-green-400': '[&>div]:bg-green-400',
     'bg-cyan': '[&>div]:bg-cyan',
@@ -24,7 +27,12 @@ export default function BudgetsPage() {
     <div className="bg-beige-100 @container min-h-screen p-7 md:px-10">
       <div className="flex items-center justify-between">
         <h1 className="mb-4 text-2xl font-bold">Budgets</h1>
-        <Button className="bg-gray-900 text-white">+ Add New Budget</Button>
+        <Button
+          className="bg-gray-900 text-white"
+          onClick={OpenCreateBudgetDialog}
+        >
+          + Add New Budget
+        </Button>
       </div>
       <div className="mt-6 grid grid-cols-1 gap-5 @xl:grid-cols-2">
         <div>
@@ -100,17 +108,16 @@ export default function BudgetsPage() {
                         <Ellipsis className="h-5 w-5" />
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent>
-                      <DropdownMenuGroup>
-                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                        <DropdownMenuItem>Profile</DropdownMenuItem>
-                        <DropdownMenuItem>Billing</DropdownMenuItem>
-                      </DropdownMenuGroup>
-                      <DropdownMenuGroup>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>Team</DropdownMenuItem>
-                        <DropdownMenuItem>Subscription</DropdownMenuItem>
-                      </DropdownMenuGroup>
+                    <DropdownMenuContent className="w-26 bg-white ring-0">
+                      <DropdownMenuItem
+                        className="cursor-pointer text-sm text-gray-900"
+                        onClick={OpenEditBudgetDialog}
+                      >
+                        Edit Budget
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="text-red cursor-pointer text-sm">
+                        Delete Budget
+                      </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </CardTitle>
@@ -173,6 +180,8 @@ export default function BudgetsPage() {
           ))}
         </div>
       </div>
+      <CreateBudgetDialog />
+      <EditBudgetDialog />
     </div>
   );
 }
