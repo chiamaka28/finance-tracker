@@ -97,8 +97,8 @@ export default function BillsPage() {
                     </div>
                   )}
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-white">
-                  <DropdownMenuLabel>Oldest</DropdownMenuLabel>
+                <DropdownMenuContent className="flex flex-col gap-4 bg-white text-sm">
+                  <DropdownMenuItem>Oldest</DropdownMenuItem>
                   <DropdownMenuItem>A to Z</DropdownMenuItem>
                   <DropdownMenuItem>Z to A</DropdownMenuItem>
                   <DropdownMenuItem>Highest</DropdownMenuItem>

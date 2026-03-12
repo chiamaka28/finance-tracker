@@ -1,12 +1,15 @@
 'use client';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+
 import {
   HomeIcon,
   TransactionIcon,
   BudgetIcon,
   PotsNavIcon,
   BillsIcon,
+  LeftArrow,
+  RightArrow,
 } from '@/lib/icons';
 
 import {
@@ -53,54 +56,59 @@ const items = [
 ];
 
 export function AppSidebar() {
-  const { state } = useSidebar();
+  const { state, open, toggleSidebar } = useSidebar();
+  const pathname = usePathname();
+
   return (
     <Sidebar
       collapsible="icon"
-      className="rounded-r-2xl bg-black pt-8 text-gray-200"
+      className="rounded-r-2xl bg-gray-900 pt-8 text-gray-200"
     >
       <SidebarContent>
         <Link href="/dashboard">
           <SidebarHeader>
             {state === 'expanded' ? (
-              <Image
-                src="/Logo.svg"
-                alt="Finance Tracker Logo"
-                width={120}
-                height={120}
-                loading="eager"
-              />
+              <div className="flex items-center">
+                <Image
+                  src="/Logo.svg"
+                  alt="Finance Tracker Logo"
+                  width={120}
+                  height={120}
+                  loading="eager"
+                />
+              </div>
             ) : (
-              <Image
-                src="/f-logo.svg"
-                alt="Finance Tracker Logo"
-                width={15}
-                height={25}
-                loading="eager"
-              />
+              <div className="flex items-center justify-center">
+                <Image
+                  src="/f-logo.svg"
+                  alt="Finance Tracker Logo"
+                  width={15}
+                  height={25}
+                  loading="eager"
+                />
+              </div>
             )}
           </SidebarHeader>
         </Link>
 
-        <SidebarGroup className="p-0 pr-2.5">
+        <SidebarGroup className="p-0 pr-2.5 group-data-[collapsible=icon]:pr-0">
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => {
                 const Icon = item.icon;
-                const pathname = usePathname();
                 const isActive = pathname === item.url;
                 return (
                   <SidebarMenuItem
                     key={item.title}
-                    className={isActive ? 'bg-beige-100 rounded-r-xl' : ''}
+                    className={`${isActive ? 'bg-beige-100 rounded-r-xl' : ''} flex items-center justify-center`}
                   >
                     <SidebarMenuButton
                       variant="default"
                       size="lg"
-                      className={`[&_svg:not([class*='size-'])]:size-6`}
+                      className="group-data-[collapsible=icon]:!size-12 group-data-[collapsible=icon]:!p-3 [&_[data-sidebar=menu-button]]:group-data-[collapsible=icon]:justify-center [&_svg:not([class*='size-'])]:size-6"
                       asChild
                     >
-                      <a href={item.url}>
+                      <Link href={item.url}>
                         <Icon
                           className={
                             isActive ? 'text-green-400' : 'text-gray-200'
@@ -112,7 +120,7 @@ export function AppSidebar() {
                         >
                           {item.title}
                         </span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 );
@@ -121,8 +129,21 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
       <SidebarFooter className="mb-10">
-        <SidebarTrigger className="flex gap-2" />
+        <SidebarMenuButton
+          onClick={toggleSidebar}
+          className="flex w-full items-center gap-2 rounded-md px-2 py-2 font-semibold text-gray-200 group-data-[collapsible=icon]:!size-12 group-data-[collapsible=icon]:!p-3 [&_[data-sidebar=menu-button]]:group-data-[collapsible=icon]:justify-center [&_svg:not([class*='size-'])]:size-6"
+        >
+          {open ? (
+            <>
+              <LeftArrow className="h-6 w-6" />
+              <span className="text-base">Minimize Menu</span>
+            </>
+          ) : (
+            <RightArrow className="h-6 w-6" />
+          )}
+        </SidebarMenuButton>
       </SidebarFooter>
     </Sidebar>
   );

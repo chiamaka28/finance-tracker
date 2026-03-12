@@ -122,7 +122,7 @@ export default function TransactionTable() {
           <Input
             type="text"
             placeholder="Search transactions"
-            className="w-full pl-10 md:max-w-[450px]"
+            className="w-full pl-5 md:pl-8 lg:w-75 xl:w-md"
           />
           <Button className="absolute top-1/2 right-3 -translate-y-1/2 transition-colors">
             <SearchIcon className="h-4 w-4 text-gray-400" />
@@ -140,19 +140,21 @@ export default function TransactionTable() {
                 <SortIcon className="h-5 w-5" />
               </Button>
             ) : (
-              <div>
-                <label className="">Sort By</label>
+              <div className="flex items-center gap-1">
+                <label className="border-gray-300 text-sm text-gray-300">
+                  Sort By
+                </label>
                 <Button
                   variant="outline"
-                  className="border-gray-900 bg-transparent shadow-none"
+                  className="border-gray-300 bg-transparent text-gray-900 shadow-none"
                 >
                   Latest <ChevronDownIcon className="ml-1 h-4 w-4" />
                 </Button>
               </div>
             )}
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-white">
-            <DropdownMenuLabel>Oldest</DropdownMenuLabel>
+          <DropdownMenuContent className="flex flex-col gap-4 bg-white text-sm">
+            <DropdownMenuItem>Oldest</DropdownMenuItem>
             <DropdownMenuItem>A to Z</DropdownMenuItem>
             <DropdownMenuItem>Z to A</DropdownMenuItem>
             <DropdownMenuItem>Highest</DropdownMenuItem>
@@ -170,11 +172,11 @@ export default function TransactionTable() {
                 <FilterIcon className="h-5 w-5" />
               </Button>
             ) : (
-              <div>
-                <label className="">Category</label>
+              <div className="flex items-center gap-1">
+                <label className="text-sm text-gray-300">Category</label>
                 <Button
                   variant="outline"
-                  className="border-gray-900 bg-transparent shadow-none"
+                  className="border-gray-300 bg-transparent text-gray-900 shadow-none"
                 >
                   All Transaction <ChevronDownIcon className="ml-1 h-4 w-4" />
                 </Button>
@@ -182,8 +184,8 @@ export default function TransactionTable() {
             )}
           </DropdownMenuTrigger>
 
-          <DropdownMenuContent className="bg-white">
-            <DropdownMenuLabel>Entertainment</DropdownMenuLabel>
+          <DropdownMenuContent className="flex flex-col gap-4 bg-white text-sm">
+            <DropdownMenuItem>Entertainment</DropdownMenuItem>
             <DropdownMenuItem>Bills</DropdownMenuItem>
             <DropdownMenuItem>Groceries</DropdownMenuItem>
             <DropdownMenuItem>Dining Out</DropdownMenuItem>
@@ -199,26 +201,32 @@ export default function TransactionTable() {
       <Table className="overflow-hidden">
         <TableHeader className="hidden md:table-header-group">
           <TableRow className="border-b-0 border-gray-100">
-            <TableHead>Recipient/Sender</TableHead>
-            <TableHead>Category</TableHead>
-            <TableHead>Transaction Date</TableHead>
-            <TableHead className="text-right">Amount</TableHead>
+            <TableHead className="text-xs text-gray-300">
+              Recipient/Sender
+            </TableHead>
+            <TableHead className="text-xs text-gray-300">Category</TableHead>
+            <TableHead className="text-xs text-gray-300">
+              Transaction Date
+            </TableHead>
+            <TableHead className="text-right text-xs text-gray-300">
+              Amount
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {items.map((item) => (
             <TableRow key={item.id} className="border-gray-100">
-              <TableCell className="font-medium">
+              <TableCell className="py-5 font-medium">
                 {item.name}
                 <span className="block text-xs text-gray-500 sm:hidden">
                   {item.category}
                 </span>
               </TableCell>
-              <TableCell className="hidden sm:table-cell">
+              <TableCell className="hidden text-xs text-gray-300 sm:table-cell">
                 {item.category}
               </TableCell>
 
-              <TableCell className="hidden sm:table-cell">
+              <TableCell className="hidden text-xs text-gray-300 sm:table-cell">
                 {item.date}
               </TableCell>
 
@@ -235,25 +243,30 @@ export default function TransactionTable() {
       </Table>
 
       <Pagination>
-        <PaginationContent className="mt-6">
-          <PaginationItem>
+        <PaginationContent className="mt-6 justify-between">
+          <PaginationItem className="border-gray-300 text-gray-900">
             <PaginationPrevious href="#" />
           </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">1</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#" isActive>
-              2
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">3</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
-          <PaginationItem>
+          <div className="flex items-center gap-2">
+            <PaginationItem className="border-gray-300 text-gray-900">
+              <PaginationLink href="#">1</PaginationLink>
+            </PaginationItem>
+            <PaginationItem className="border-gray-300 text-gray-900">
+              <PaginationLink href="#" isActive>
+                2
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem className="border-gray-300 text-gray-900">
+              <PaginationLink href="#">3</PaginationLink>
+            </PaginationItem>
+            <PaginationItem className="border-gray-300 text-gray-900">
+              <PaginationLink href="#">4</PaginationLink>
+            </PaginationItem>
+            <PaginationItem className="border-gray-300 text-gray-900">
+              <PaginationLink href="#">5</PaginationLink>
+            </PaginationItem>
+          </div>
+          <PaginationItem className="border-gray-300 text-gray-900">
             <PaginationNext href="#" />
           </PaginationItem>
         </PaginationContent>

@@ -22,9 +22,8 @@ export function WithdrawPotDialog() {
             Withdraw from ‘Savings’
           </DialogTitle>
           <DialogDescription className="text-sm text-gray-300">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus
-            hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque,
-            aliquet.
+            Withdraw from your pot to put money back in your main balance. This
+            will reduce the amount you have in this pot.
           </DialogDescription>
         </DialogHeader>
       </DialogContent>
