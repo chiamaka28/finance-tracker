@@ -35,7 +35,7 @@ export function CreatePotDialog() {
     <Dialog open={createPotOpen} onOpenChange={CloseCreatePotDialog}>
       <DialogContent className="h-128 p-6 sm:max-w-140">
         <DialogHeader>
-          <DialogTitle className="text-3xl font-bold text-gray-900">
+          <DialogTitle className="text-xl font-bold text-gray-900 md:text-3xl">
             Add New Pot
           </DialogTitle>
           <DialogDescription className="text-sm text-gray-300">

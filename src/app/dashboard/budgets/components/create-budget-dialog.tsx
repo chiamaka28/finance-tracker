@@ -35,7 +35,7 @@ export function CreateBudgetDialog() {
     <Dialog open={createBudgetOpen} onOpenChange={CloseCreateBudgetDialog}>
       <DialogContent className="h-128 p-6 sm:max-w-140">
         <DialogHeader>
-          <DialogTitle className="text-3xl font-bold text-gray-900">
+          <DialogTitle className="text-xl font-bold text-gray-900 sm:text-3xl">
             Add New Budget
           </DialogTitle>
           <DialogDescription className="text-sm text-gray-300">
