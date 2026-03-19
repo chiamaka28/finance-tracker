@@ -7,9 +7,9 @@ import TransactionCard from '@/components/transaction-card';
 export default function DashboardPage() {
   return (
     <div className="bg-beige-100 @container flex min-h-screen flex-col p-7 md:px-10 md:py-2">
-      <h1 className="my-3 text-3xl font-bold">Overview</h1>
+      <h1 className="mt-6 mb-5 text-3xl font-bold sm:mt-8">Overview</h1>
       <CardGrid />
-      <div className="my-8 grid grid-cols-1 gap-6 @3xl:grid-cols-5">
+      <div className="grid grid-cols-1 gap-6 @3xl:grid-cols-5">
         <div className="order-1 @3xl:order-1 @3xl:col-span-3">
           <Pots />
         </div>

@@ -116,13 +116,13 @@ export default function TransactionTable() {
   const isMobile = useIsMobile();
   if (isMobile === undefined) return null;
   return (
-    <div className="rounded-lg bg-white p-6">
+    <div className="rounded-lg bg-white px-5 py-6 sm:p-8">
       <div className="mb-4 flex items-center justify-between gap-6">
         <div className="relative">
           <Input
             type="text"
             placeholder="Search transactions"
-            className="w-full pl-5 md:pl-8 lg:w-75 xl:w-md"
+            className="h-11.25 w-full pl-5 md:pl-8 lg:w-75 xl:w-md"
           />
           <Button className="absolute top-1/2 right-3 -translate-y-1/2 transition-colors">
             <SearchIcon className="h-4 w-4 text-gray-400" />
@@ -141,12 +141,10 @@ export default function TransactionTable() {
               </Button>
             ) : (
               <div className="flex items-center gap-1">
-                <label className="border-gray-300 text-sm text-gray-300">
-                  Sort By
-                </label>
+                <label className="text-sm text-gray-300">Sort By</label>
                 <Button
                   variant="outline"
-                  className="border-gray-300 bg-transparent text-gray-900 shadow-none"
+                  className="h-11.25 border-gray-300 bg-transparent text-gray-900 shadow-none"
                 >
                   Latest <ChevronDownIcon className="ml-1 h-4 w-4" />
                 </Button>
@@ -176,7 +174,7 @@ export default function TransactionTable() {
                 <label className="text-sm text-gray-300">Category</label>
                 <Button
                   variant="outline"
-                  className="border-gray-300 bg-transparent text-gray-900 shadow-none"
+                  className="h-11.25 border-gray-300 bg-transparent text-gray-900 shadow-none"
                 >
                   All Transaction <ChevronDownIcon className="ml-1 h-4 w-4" />
                 </Button>
@@ -198,17 +196,19 @@ export default function TransactionTable() {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <Table className="overflow-hidden">
-        <TableHeader className="hidden md:table-header-group">
+      <Table className="overflow-hidden md:mt-6">
+        <TableHeader className="hidden sm:table-header-group">
           <TableRow className="border-b-0 border-gray-100">
-            <TableHead className="text-xs text-gray-300">
+            <TableHead className="pb-5.25 text-xs text-gray-300">
               Recipient/Sender
             </TableHead>
-            <TableHead className="text-xs text-gray-300">Category</TableHead>
-            <TableHead className="text-xs text-gray-300">
+            <TableHead className="pb-5.25 text-xs text-gray-300">
+              Category
+            </TableHead>
+            <TableHead className="pb-5.25 text-xs text-gray-300">
               Transaction Date
             </TableHead>
-            <TableHead className="text-right text-xs text-gray-300">
+            <TableHead className="pb-5.25 text-right text-xs text-gray-300">
               Amount
             </TableHead>
           </TableRow>
@@ -216,7 +216,7 @@ export default function TransactionTable() {
         <TableBody>
           {items.map((item) => (
             <TableRow key={item.id} className="border-gray-100">
-              <TableCell className="py-5 font-medium">
+              <TableCell className="px-4 py-4 font-medium">
                 {item.name}
                 <span className="block text-xs text-gray-500 sm:hidden">
                   {item.category}

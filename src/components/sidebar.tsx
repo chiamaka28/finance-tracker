@@ -10,6 +10,7 @@ import {
   BillsIcon,
   LeftArrow,
   RightArrow,
+  Logo,
 } from '@/lib/icons';
 
 import {
@@ -17,7 +18,6 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarTrigger,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -29,7 +29,7 @@ import Link from 'next/link';
 
 const items = [
   {
-    title: 'Dashboard',
+    title: 'Overview',
     url: '/dashboard',
     icon: HomeIcon,
   },
@@ -65,18 +65,10 @@ export function AppSidebar() {
       className="rounded-r-2xl bg-gray-900 pt-8 text-gray-200"
     >
       <SidebarContent>
-        <Link href="/dashboard">
-          <SidebarHeader>
+        <SidebarHeader className="px-8 pb-8">
+          <Link href="/dashboard">
             {state === 'expanded' ? (
-              <div className="flex items-center">
-                <Image
-                  src="/Logo.svg"
-                  alt="Finance Tracker Logo"
-                  width={120}
-                  height={120}
-                  loading="eager"
-                />
-              </div>
+              <Logo />
             ) : (
               <div className="flex items-center justify-center">
                 <Image
@@ -88,10 +80,10 @@ export function AppSidebar() {
                 />
               </div>
             )}
-          </SidebarHeader>
-        </Link>
+          </Link>
+        </SidebarHeader>
 
-        <SidebarGroup className="p-0 pr-2.5 group-data-[collapsible=icon]:pr-0">
+        <SidebarGroup className="mb-6 p-0 pr-2.5 group-data-[collapsible=icon]:pr-0">
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => {
@@ -100,12 +92,12 @@ export function AppSidebar() {
                 return (
                   <SidebarMenuItem
                     key={item.title}
-                    className={`${isActive ? 'bg-beige-100 rounded-r-xl' : ''} flex items-center justify-center`}
+                    className={`${isActive ? 'bg-beige-100 rounded-r-xl' : ''} mr-6 flex items-center justify-center`}
                   >
                     <SidebarMenuButton
                       variant="default"
                       size="lg"
-                      className="group-data-[collapsible=icon]:!size-12 group-data-[collapsible=icon]:!p-3 [&_[data-sidebar=menu-button]]:group-data-[collapsible=icon]:justify-center [&_svg:not([class*='size-'])]:size-6"
+                      className="py-4 pl-8 group-data-[collapsible=icon]:!size-12 group-data-[collapsible=icon]:!p-3 [&_[data-sidebar=menu-button]]:group-data-[collapsible=icon]:justify-center [&_svg:not([class*='size-'])]:size-6"
                       asChild
                     >
                       <Link href={item.url}>
@@ -130,10 +122,10 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="mb-10">
+      <SidebarFooter className="mb-12.5">
         <SidebarMenuButton
           onClick={toggleSidebar}
-          className="flex w-full items-center gap-2 rounded-md px-2 py-2 font-semibold text-gray-200 group-data-[collapsible=icon]:!size-12 group-data-[collapsible=icon]:!p-3 [&_[data-sidebar=menu-button]]:group-data-[collapsible=icon]:justify-center [&_svg:not([class*='size-'])]:size-6"
+          className="flex w-full items-center gap-2 rounded-md py-4 pl-8 font-semibold text-gray-200 group-data-[collapsible=icon]:!size-12 group-data-[collapsible=icon]:!p-3 [&_[data-sidebar=menu-button]]:group-data-[collapsible=icon]:justify-center [&_svg:not([class*='size-'])]:size-6"
         >
           {open ? (
             <>

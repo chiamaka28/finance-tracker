@@ -1,11 +1,11 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { CheveronRight, PotsIcon } from '@/lib/icons';
 import Link from 'next/link';
 
 export default function Pots() {
   return (
     <div className="col-span-3">
-      <Card className="relative mb-5 bg-white ring-0 md:mb-0 md:h-55">
+      <Card className="relative gap-5 bg-white px-5 py-6 ring-0 md:h-55 md:p-8">
         <CardHeader className="flex items-center justify-between">
           <h3 className="text-lg font-bold text-gray-900">Pots</h3>
           <Link
@@ -16,8 +16,8 @@ export default function Pots() {
             <CheveronRight />
           </Link>
         </CardHeader>
-        <CardContent className="flex flex-col sm:flex-row sm:items-center sm:gap-6">
-          <div className="bg-beige-100 mb-4 flex w-full items-center gap-5 rounded-lg p-6 sm:mb-0 sm:max-w-61.75 sm:shrink-0">
+        <CardContent className="flex flex-col sm:flex-row sm:items-center">
+          <div className="bg-beige-100 gap- mb-5 flex w-full items-center rounded-lg p-6 sm:max-w-61.75 sm:shrink-0">
             <PotsIcon />
             <div className="flex flex-col gap-2">
               <p className="text-sm text-gray-500">Total Saved</p>
@@ -25,7 +25,7 @@ export default function Pots() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+          <div className="grid grid-cols-2 gap-4">
             <div className="flex items-center gap-2">
               <div className="h-10 w-1 shrink-0 rounded-md bg-green-400" />
               <div>
